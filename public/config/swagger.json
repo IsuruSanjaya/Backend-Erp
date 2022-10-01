@@ -1,0 +1,1203 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "SLIIT ERP API Documentation",
+        "version": "1.0.0",
+        "title": " API Doc ERP 2022",
+        "contact": {
+            "email": "jadithya803@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Users",
+        "description": "API for users"
+      },
+      {
+        "name": "Delivery Order",
+        "description": "API for Delivery Order"
+      },
+      {
+        "name": "Delivery Item",
+        "description": "API for Delivery Item"
+      }
+      , {
+        "name": "Customer",
+        "description": "API for Customer "
+      }
+    ],
+    "produces": ["application/json"],
+    "schemes": ["http"],
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths" : {
+        "/user/getuser" : {
+            "get" : {
+                "tags": ["Users"],
+                "summary" : "Get all the users",
+                "description": "Get all the users",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/create" : {
+            "post" : {
+                "tags": ["Users"],
+                "summary" : "Create User",
+                "description": "Save the user",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "user object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/User"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/updateuser/{id}" : {
+            "put" : {
+                "tags": ["Users"],
+                "summary" : "Update the user",
+                "description": "Update the user",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "user object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/User"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/deleteuser/{id}" : {
+            "delete" : {
+                "tags": ["Users"],
+                "summary" : "Delete the user",
+                "description": "Delete the user",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/create" : {
+            "post" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Create Delivery_Order",
+                "description": "Save the Delivery Order",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Delivery Order object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Delivery_Order"        
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/{companyId}/{page}/{pageSize}" : {
+            "get" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Get all the Delivery Orders",
+                "description": "Get all the  Delivery Orders",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Delivery Order page that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "path",
+                        "description": "Delivery Order pageSize that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/{id}/{status}/{companyId}" : {
+            "get" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Get Delivery Order By id",
+                "description": "Get Delivery Order By id",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be get Delivery Order",
+                        "required": true,
+                        "type": "number"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/delete/{id}" : {
+            "delete" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Delete the Delivery_Order",
+                "description": "Delete the dilivery Order",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/edit/{id}" : {
+            "put" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Update the Delivery Order",
+                "description": "Update the Delivery Order",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Delivery Order object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Delivery_Order" 
+                           
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-order/edit/status/{id}/{status}" : {
+            "put" : {
+                "tags": ["Delivery Order"],
+                "summary" : "Update the Delivery Order",
+                "description": "Update the Delivery Order",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Order id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    }, {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Delivery Order Status that needs to be Update ",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-item/create" : {
+            "post" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Create Delivery_item",
+                "description": "Save the Delivery item",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Delivery item object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Delivery_Items"        
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        
+        "/api/delivery-item/{companyId}/{page}/{pageSize}" : {
+            "get" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Get all the Delivery Item",
+                "description": "Get all the  Delivery Item",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Delivery Item companyId that need",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Delivery Item page that need",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "path",
+                        "description": "Delivery Item pageSize that need",
+                        "required": true,
+                        "type": "number"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-item/{id}/{status}/{companyId}" : {
+            "get" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Get Delivery Item By id",
+                "description": "Get Delivery Item By id",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Item id that need",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Delivery Item status that need ",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Delivery Item id that need",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-item/delete/items/{id}" : {
+            "delete" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Delete the Delivery Item",
+                "description": "Delete the dilivery Item",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Item id that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-item/edit/status/{id}/{status}" : {
+            "put" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Update the Delivery Item",
+                "description": "Update the Delivery Item",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Item id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Delivery Item Status that needs to be Update ",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/delivery-item/edit/{id}" : {
+            "put" : {
+                "tags": ["Delivery Item"],
+                "summary" : "Update the Delivery Item",
+                "description": "Update the Delivery Item",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Delivery Item id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Delivery Item object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Delivery_Items" 
+                           
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/create" : {
+            "post" : {
+                "tags": ["Customer"],
+                "summary" : "Create Customer",
+                "description": "Save the Customer ",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Customer  object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Customer"        
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        
+        "/api/customer/{companyId}/{page}/{pageSize}" : {
+            "get" : {
+                "tags": ["Customer"],
+                "summary" : "Get all the Customer ",
+                "description": "Get all the  Customer ",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Customer companyId that need",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "description": "Customer page that need",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "path",
+                        "description": "Customer pageSize that need",
+                        "required": true,
+                        "type": "number"
+                    }
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/getbyid/{id}/{status}/{companyId}" : {
+            "get" : {
+                "tags": ["Customer"],
+                "summary" : "Get Customer By id",
+                "description": "Get Customer By id",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer id that need",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Customer  status that need ",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "companyId",
+                        "in": "path",
+                        "description": "Customer companyId that need",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/delete/{id}" : {
+            "delete" : {
+                "tags": ["Customer"],
+                "summary" : "Delete the Customer ",
+                "description": "Delete the Customer",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customerid that needs to be deleted",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/edit/status/{id}/{status}" : {
+            "put" : {
+                "tags": ["Customer"],
+                "summary" : "Update the Customer",
+                "description": "Update the Customer",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Customer Status that needs to be Update ",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/customer/edit/{id}" : {
+            "put" : {
+                "tags": ["Customer"],
+                "summary" : "Update the Customer",
+                "description": "Update the Customer",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Customer id that needs to be Update ",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Customer object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Customer" 
+                           
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    
+
+    "definitions": {
+        "userResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                     "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+               
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Delivery_Order":{
+            "type": "object",
+            "properties": {
+                "date":{
+                        "type": "string"
+                    },
+                "transactionDate": {
+                        "type": "string"
+                    },
+                "orderNumber":{
+                        "type": "string"
+                    },
+                "referenceNumber": {
+                        "type": "string"
+                    },
+                "transactionType": {
+                        "type": "string"
+                    },
+                "orderSource": {
+                        "type": "string"
+                    },
+                "deliveryType":{
+                        "type": "string"
+                    },
+                "vehicleNumber": {
+                        "type": "string"
+                    },
+                "coustomer": {
+                        "type": "string"
+                    },
+                "customerType": {
+                        "type": "string"
+                    },
+                "salesPerson": {
+                        "type": "string"
+                    },
+                "salesOrder": {
+                        "type": "string"
+                    },
+                "purchaseOrder": {
+                        "type": "string"
+                    },
+                "shippingAddress":{
+                        "type": "string"
+                    },
+                "totalBuill":{
+                        "type": "string"
+                    },
+                "status": {
+                        "type": "integer"
+                    },
+                "companyId": {
+                    "type": "number"
+                },
+                "createAt":{
+                        "type": "string"
+                    },
+                "updateAt":{
+                        "type": "string"
+                    },
+                "deleteAt": {
+                        "type": "string"
+                    }
+        }
+    }, 
+    "Delivery_Items":{
+        "type": "object",
+        "properties": {
+            "itemName":{
+                "type": "string"
+            },
+            "quantity":{
+                "type": "integer"
+            },
+            "unitPrice":{
+                "type": "number"
+            },
+            "unitDiscount":{
+                "type": "integer"
+            },
+            "unitTax": {
+                "type": "integer"
+            },
+            "deliveryOrder": {
+                "type": "string"
+            },
+            "unitTaxAmount":{
+                "type": "integer"
+            } ,
+            "status":{
+                "type": "integer"
+            },
+            "companyId": {
+                "type": "number"
+            },
+            "createAt":{
+                "type": "string"
+            },
+            "updateAt":{
+                "type": "string"
+            },
+            "deleteAt": {
+                "type": "string"
+            }
+
+        }
+    },
+    "Customer":{
+        "type": "object",
+        "properties": {
+            "date":{
+                    "type": "string"
+                },
+            "referenceNumber": {
+                    "type": "string"
+                },
+            "title": {
+                    "type": "string"
+                },
+            "email": {
+                    "type": "string"
+                },
+            "customer": {
+                    "type": "string"
+                },
+            "customerType": {
+                    "type": "string"
+                },
+            "salesPerson": {
+                    "type": "string"
+                },
+            "address": {
+                    "type": "string"
+                },
+            "nic": {
+                "type": "number"
+            },
+            "mobile": {
+                "type": "number"
+            },
+            "companyId": {
+                "type": "number"
+            },
+            "status": {
+                "type": "number"
+            },
+            "createAt":{
+                    "type": "string"
+                },
+            "updateAt":{
+                    "type": "string"
+                },
+            "deleteAt": {
+                    "type": "string"
+                }
+    }
+}, 
+        "/user/create" : {
+            "post" : {
+                "tags": ["Users"],
+                "summary" : "Create User",
+                "description": "Save the user",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "user object",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user" : {
+                                    "type": "object",
+                                    "$ref": "#/definitions/User"
+                                } 
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/userResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "InvalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}

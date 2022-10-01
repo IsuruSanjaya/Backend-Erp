@@ -1,0 +1,34 @@
+﻿extends layout
+
+block content
+  .main-container
+    .cloud-image
+        img(src='/images/successCloudNew.svg')
+    .content
+        .tweet-container
+             a(href='')
+                img(src='/images/tweetThis.svg')
+        .content-body
+            .success-text
+                p Success!
+            .description
+                p ERP API  has been successfully setup
+            .description
+                p Your Api is up and running on Azure
+
+  .row
+    .col-md-4
+      h2 Get started right away
+      p start developing your application on IDE of your choice
+      p
+        a.btn.btn-default(href='https://github.com/adithya-coder/ITP') Learn more &raquo;
+    .col-md-4
+      h2 Continuous Delivery
+      p View your workflow on cloud and customize it as per your needs
+      p
+        a.btn.btn-default(href='https://itpproject2022.azurewebsites.net/') Learn more &raquo;
+    .col-md-4
+      h2 API Workflow
+      p Learn more about all you can do with API workflow by visiting the documentation
+      p
+        a.btn.btn-default(href='api-docs/#/default') Learn more &raquo;

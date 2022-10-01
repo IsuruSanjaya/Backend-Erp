@@ -1,0 +1,30 @@
+﻿doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - ITP Application
+    link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header 
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+         
+        .navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/api-docs/#/default') Api Doc
+            
+    .container.body-content
+      block content
+      hr
+      footer
+        p &copy; SLIIT 2022 ERP Application
+   
+    block scripts
